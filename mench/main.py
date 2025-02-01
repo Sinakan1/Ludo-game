@@ -4,6 +4,7 @@ import random
 from boardAndPiece import  draw_board , draw_pieces
 from movment import move_piece
 from gameSetup import playersColor
+from player import player_pieces
 
 
 # Initialize Pygame
@@ -28,7 +29,9 @@ YELLOW = (236, 182, 19)
 DARK_YELLOW = (198, 163, 57)
 GRAY = (200, 200, 200)
 
-
+# Board setup
+CELL_SIZE = 40
+ROWS, COLS = 15, 15
 
 # Dice setup
 dice_font = pygame.font.Font(None, 36)
@@ -46,18 +49,23 @@ def changeTurn():
 colorTurn = changeTurn()
 
 
-
-
+# index
+i = 0
 # Main game loop
 clock = pygame.time.Clock()
 running = True
+moved = True #check is turn is over or not 
 while running:
     screen.fill(WHITE)
 
     # Draw board and pieces
     draw_board()
     draw_pieces()
-
+    colorTokens = list(player_pieces[colorTurn].keys())
+    selected_pieces = colorTokens[i]
+    selected_pieces_pos = player_pieces[colorTurn][selected_pieces]["pos"]
+    x,y = selected_pieces_pos
+    circle = pygame.draw.circle(screen , (0,0,0) ,(x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2),18,3 )
 
     # Dice display
     dice_text = dice_font.render(f"Dice: {dice_value}", True, BLACK)
@@ -69,12 +77,27 @@ while running:
             running = False
 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:  # Roll the dice
+
+            if event.key == pygame.K_SPACE and moved:  # Roll the dice
                 dice_value = random.randint(1, 6)
-                
-                move_piece(colorTurn, dice_value , f"{colorTurn[0]}"+f"{2}")
+                moved = False
+
+            elif event.key == pygame.K_RETURN and not moved:
+                move_piece(colorTurn, dice_value , selected_pieces)
                 if dice_value != 6:
                     colorTurn = changeTurn()
+                moved = True
+                    
+            elif event.key == pygame.K_LEFT:
+                colorTokens = list(player_pieces[colorTurn].keys())
+                if i == 0 : i = 3 
+                else : i -= 1
+
+            elif event.key == pygame.K_RIGHT:
+                colorTokens = list(player_pieces[colorTurn].keys())
+                if i == 3 : i = 0 
+                else : i += 1
+                
 
     pygame.display.flip()
     clock.tick(30)
