@@ -1,10 +1,39 @@
+from gameSetup import playersColor
+
 
 # Player pieces
-player_pieces = {
-    "red": {"r1":(1, 1),"r2":(1,4),"r3":(4,4),"r4":(4,1)},
-    "blue": {"b1":(1, 13),"b2":(4,13),"b3":(1,10),"b4":(4,10)},
-    "green": {"g1":(13, 1),"g2":(10,4),"g3":(10,1),"g4":(13,4)},
-    "yellow": {"y1":(13, 13),"y2":(10,10),"y3":(13,10),"y4":(10,13)}
+pieces = {
+    "red": {"r1":{"pos":(1, 1),"play":False},"r2":{"pos":(1, 4),"play":False},"r3":{"pos":(4, 4),"play":False},"r4":{"pos":(4, 1),"play":False}},
+    "blue": {"b1":{"pos":(1, 13),"play":False},"b2":{"pos":(4, 13),"play":False},"b3":{"pos":(1, 10),"play":False},"b4":{"pos":(4, 10),"play":False}},
+    "green": {"g1":{"pos":(13, 1),"play":False},"g2":{"pos":(10, 1),"play":False},"g3":{"pos":(10, 4),"play":False},"g4":{"pos":(13, 4),"play":False}},
+    "yellow": {"y1":{"pos":(13, 13),"play":False},"y2":{"pos":(10, 10),"play":False},"y3":{"pos":(13, 10),"play":False},"y4":{"pos":(10, 13),"play":False}}
 }
-print(player_pieces['red']["r1"])
+player_pieces={}
 
+for color in pieces.keys():
+    if color in playersColor:
+        player_pieces[color] = pieces[color]
+
+# player Start Cell
+startCell ={
+    "red":    (1,6), 
+    "blue":   (6, 13),
+    "green":  (8,1),
+    "yellow": (13 ,8)
+}
+
+
+# player End Cell
+endCell = {
+    "red":    (0,7), 
+    "blue":   (7, 14),
+    "green":  (7,0),
+    "yellow": (14 ,7)
+}
+
+endHouse = {
+    "red": [(j,7) for j in range(1,6) ], 
+    "blue":   [(7, i) for i in range(13,8,-1)],
+    "green":  [(7,i) for i in range(1 ,6)],
+    "yellow": [(j ,7) for j in range(13,8,-1)]
+}
