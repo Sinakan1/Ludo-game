@@ -1,41 +1,61 @@
-from player import player_pieces
+from player import player_pieces , pieces
 from boardAndPiece import main_path , draw_board , draw_pieces
-from player import endCell , endHouse , startCell
+from player import endCell , endHouse , startCell , tokens , firstPosition
 # Move a piece
+
+tokensPos= tokens()
+
 def move_piece(color, dice_roll,piece_name = "r1"):
+    
+    otherPiece = list(player_pieces[color].keys())
+    otherPiece.remove(piece_name)
+    
     if player_pieces[color]:
         piece =player_pieces[color][piece_name]["pos"]  # Get the first piece of the player
+
         if piece in main_path:  # Check if the piece is on the main path
-            countor = 0
-            for repeat in range(dice_roll):
-                piece =player_pieces[color][piece_name]["pos"]
-                if piece == endCell[color] :
-                    rem_dice = dice_roll - countor
-                    if rem_dice > 0:
-                        move_piece_house(color,rem_dice,piece_name)
-                        break
-                    elif rem_dice <= 0 :
-                        break                   
-                current_index = main_path.index(piece)  # Find current position in the main path
-                new_index = (current_index + 1) % len(main_path)  # Calculate new position
+
+            current_index = main_path.index(piece)  # Find current position in the main path
+            end_index = (current_index + dice_roll) % len(main_path)  # Calculate new position
+            end_point = main_path[end_index]
+            
+            if move_statments(color,end_point,piece_name):
                 
-                player_pieces[color][piece_name]["pos"] = main_path[new_index]  # Update the piece position
-                countor += 1
+                countor = 0
+                for repeat in range(dice_roll):
+                    piece =player_pieces[color][piece_name]["pos"]
+                    if piece == endCell[color] :
+                        rem_dice = dice_roll - countor
+                        if rem_dice > 0:
+                            move_piece_house(color,rem_dice,piece_name)
+                            break
+                        elif rem_dice <= 0 :
+                            break
+                                    
+                    current_index = main_path.index(piece)  # Find current position in the main path
+                    new_index = (current_index + 1) % len(main_path)  # Calculate new position
+
+                    global tokensPos                
+                    tokensPos = tokens()
+                    
+                    player_pieces[color][piece_name]["pos"] = main_path[new_index]  # Update the piece position
+                    countor += 1
+                    
 
         elif piece in endHouse[color]:
             move_piece_house(color , dice_roll,piece_name)
 
         else:
-             # If the piece is not on the main path, move it to the starting position
+                # If the piece is not on the main path, move it to the starting position
             if dice_roll == 6:
                 player_pieces[color][piece_name]["pos"] = startCell[color]
                 pass
                 # player_pieces[color][0] = start_pos
             else :
                 pass
-                # change turn
-            
+                    # change turn
 
+    
 def move_piece_house(color , dice_roll , piece_name):
     match color :
         case 'red':
@@ -48,7 +68,7 @@ def move_piece_house(color , dice_roll , piece_name):
 
         case 'green':
             for dice in range(dice_roll):
-                piece =player_pieces[color][piece_name]["pos"]["pos"]
+                piece = player_pieces[color][piece_name]["pos"]
                 if piece == endHouse[color][-1]:
                     break
                 new_piece = (piece[0] , piece[1]+1)
@@ -69,3 +89,30 @@ def move_piece_house(color , dice_roll , piece_name):
                     break
                 new_piece = (piece[0] , piece[1]-1)
                 player_pieces[color][piece_name]["pos"] = new_piece
+
+
+
+
+    
+
+def move_statments(color , piece , piece_name):
+    otherPiece = list(player_pieces[color].keys())
+    print(tokensPos)
+    
+    for token in tokensPos:
+
+        if piece == tokensPos[token] and (token in otherPiece) and piece_name != token :
+            return False 
+            
+        elif piece == tokensPos[token] and (not (token in otherPiece)) and piece_name != token:
+            if 'b' in token: temp = 'blue'
+            elif 'r' in token: temp = 'red'
+            elif 'g' in token: temp = 'green'
+            elif 'y' in token: temp = 'yellow'
+            player_pieces[temp][token]["pos"] = firstPosition[token]
+            return tokensPos , True 
+
+    else:
+        return True
+            
+            

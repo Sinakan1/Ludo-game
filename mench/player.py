@@ -1,5 +1,5 @@
 from gameSetup import playersColor
-
+import copy
 
 # Player pieces
 pieces = {
@@ -8,11 +8,29 @@ pieces = {
     "green": {"g1":{"pos":(13, 1),"play":False},"g2":{"pos":(10, 1),"play":False},"g3":{"pos":(10, 4),"play":False},"g4":{"pos":(13, 4),"play":False}},
     "yellow": {"y1":{"pos":(13, 13),"play":False},"y2":{"pos":(10, 10),"play":False},"y3":{"pos":(13, 10),"play":False},"y4":{"pos":(10, 13),"play":False}}
 }
+
+
+
+
 player_pieces={}
 
+# make players list for games
 for color in pieces.keys():
     if color in playersColor:
-        player_pieces[color] = pieces[color]
+        player_pieces[color] = copy.deepcopy(pieces[color])
+
+
+
+# make list of position of Tokens
+def tokens():
+    tokensPos = {}
+    for color in player_pieces:
+        for piece in player_pieces[color]:
+            tokensPos[piece] = copy.deepcopy(player_pieces[color][piece]["pos"])
+    return tokensPos
+
+firstPosition = tokens()
+
 
 # player Start Cell
 startCell ={

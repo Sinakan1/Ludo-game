@@ -4,7 +4,7 @@ import random
 from boardAndPiece import  draw_board , draw_pieces
 from movment import move_piece
 from gameSetup import playersColor
-from player import player_pieces
+
 
 # Initialize Pygame
 pygame.init()
@@ -45,15 +45,7 @@ def changeTurn():
 
 colorTurn = changeTurn()
 
-# select peice
-def selectPiece(colorTurn , dice_value):
-    which = input("enter piece number to move: ")
-    if which in player_pieces[colorTurn].keys():
-        selectedPiece = which
-        return selectedPiece
-    else :
-        print("wrong name")
-        selectPiece()
+
 
 
 # Main game loop
@@ -80,7 +72,7 @@ while running:
             if event.key == pygame.K_SPACE:  # Roll the dice
                 dice_value = random.randint(1, 6)
                 
-                move_piece(colorTurn, dice_value , f"{colorTurn[0]}"+f"{1}")
+                move_piece(colorTurn, dice_value , f"{colorTurn[0]}"+f"{2}")
                 if dice_value != 6:
                     colorTurn = changeTurn()
 
