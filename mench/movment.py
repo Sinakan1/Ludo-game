@@ -36,10 +36,10 @@ def move_piece(color, dice_roll,piece_name = "r1"):
                     current_index = main_path.index(piece)  # Find current position in the main path
                     new_index = (current_index + 1) % len(main_path)  # Calculate new position
 
-                    tokensPos = tokens()
-                    
                     player_pieces[color][piece_name]["pos"] = main_path[new_index]  # Update the piece position
                     countor += 1
+
+                    tokensPos = tokens()
                 return True
             else:
                 return False
@@ -52,16 +52,13 @@ def move_piece(color, dice_roll,piece_name = "r1"):
                 # If the piece is not on the main path, move it to the starting position
             if dice_roll == 6:
                 
-                for token in tokensPos:
-                    print(f"------------------------{token}")
-                    print(tokensPos[token],"--------tokens")
-                    print(startCell[color],"--------start")         
+                for token in tokensPos:        
                     if tokensPos[token] == startCell[color] and token in otherPiece:
                         tokensPos = tokens()
                         return False
                     
                     elif tokensPos[token] == startCell[color] and piece_name != token and (not token in otherPiece):
-                        print("salam")
+                        
                         if 'b' in token: temp = 'blue'
                         elif 'r' in token: temp = 'red'
                         elif 'g' in token: temp = 'green'
