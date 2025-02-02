@@ -93,6 +93,9 @@ while running:
                         pass
                 else :
                     move_piece(colorTurn,dice_value,selected_pieces)
+            elif event.key == pygame.K_BACKSPACE :
+                colorTurn = changeTurn()
+                moved = True
                     
             elif event.key == pygame.K_LEFT:
                 colorTokens = list(player_pieces[colorTurn].keys())
