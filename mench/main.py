@@ -1,7 +1,7 @@
 import pygame
 import sys
 import random
-from boardAndPiece import  draw_board , draw_pieces
+from boardAndPiece import  draw_board , draw_pieces,main_path
 from movment import move_piece
 from gameSetup import playersColor
 from player import player_pieces
@@ -64,6 +64,7 @@ while running:
     colorTokens = list(player_pieces[colorTurn].keys())
     selected_pieces = colorTokens[i]
     selected_pieces_pos = player_pieces[colorTurn][selected_pieces]["pos"]
+    selected_pieces_played = player_pieces[colorTurn][selected_pieces]["play"]
     x,y = selected_pieces_pos
     circle = pygame.draw.circle(screen , (0,0,0) ,(x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2),18,3 )
 
@@ -83,10 +84,15 @@ while running:
                 moved = False
 
             elif event.key == pygame.K_RETURN and not moved:
-                move_piece(colorTurn, dice_value , selected_pieces)
-                if dice_value != 6:
-                    colorTurn = changeTurn()
-                moved = True
+                moved = move_piece(colorTurn, dice_value , selected_pieces)
+                if moved:
+                    if dice_value != 6:
+                        colorTurn = changeTurn()
+                    
+                    else:
+                        pass
+                else :
+                    move_piece(colorTurn,dice_value,selected_pieces)
                     
             elif event.key == pygame.K_LEFT:
                 colorTokens = list(player_pieces[colorTurn].keys())
