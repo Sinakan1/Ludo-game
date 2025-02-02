@@ -42,16 +42,10 @@ startCell ={
 
 
 # player End Cell
-endCell = {
-    "red":    (0,7), 
-    "blue":   (7, 14),
-    "green":  (7,0),
-    "yellow": (14 ,7)
-}
 
 endHouse = {
-    "red": [(j,7) for j in range(1,6) ], 
-    "blue":   [(7, i) for i in range(13,8,-1)],
-    "green":  [(7,i) for i in range(1 ,6)],
-    "yellow": [(j ,7) for j in range(13,8,-1)]
+    "red": [(j,7) for j in range(0,6) ], 
+    "blue":   [(7, i) for i in range(14,8,-1)],
+    "green":  [(7,i) for i in range(0 ,6)],
+    "yellow": [(j ,7) for j in range(14,8,-1)]
 }

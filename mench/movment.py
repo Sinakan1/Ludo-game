@@ -1,6 +1,6 @@
 from player import player_pieces , pieces
 from boardAndPiece import main_path , draw_board , draw_pieces
-from player import endCell , endHouse , startCell , tokens , firstPosition
+from player import  endHouse , startCell , tokens , firstPosition
 # Move a piece
 
 tokensPos= tokens()
@@ -25,7 +25,7 @@ def move_piece(color, dice_roll,piece_name = "r1"):
                 countor = 0
                 for repeat in range(dice_roll):
                     piece =player_pieces[color][piece_name]["pos"]
-                    if piece == endCell[color] :
+                    if piece == endHouse[color][0] :
                         rem_dice = dice_roll - countor
                         if rem_dice > 0:
                             move_piece_house(color,rem_dice,piece_name)
