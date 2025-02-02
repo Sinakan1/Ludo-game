@@ -1,0 +1,4 @@
+well there is some idea for path and game algorithem 
+
+for example you can definate every Color its path and use it But it isn't responsible 
+(if you don't use mathematical way and find some loops init )
