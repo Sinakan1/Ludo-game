@@ -1,0 +1,8 @@
+How to play
+
+1- for doing each turn you must press "Space" for roll dice 
+
+2 - after roll dice you must select a piece to move , you can switching with 
+"left" or "right" arrow keys and you can select piece by "Enter(Return)"
+
+3- also you can Skip turn by "Backspace" 

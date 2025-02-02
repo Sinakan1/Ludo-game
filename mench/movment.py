@@ -48,14 +48,20 @@ def move_piece(color, dice_roll,piece_name = "r1"):
             move_piece_house(color , dice_roll,piece_name)
 
         else:
+            tokensPos = tokens()
                 # If the piece is not on the main path, move it to the starting position
             if dice_roll == 6:
-       
+                
                 for token in tokensPos:
+                    print(f"------------------------{token}")
+                    print(tokensPos[token],"--------tokens")
+                    print(startCell[color],"--------start")         
                     if tokensPos[token] == startCell[color] and token in otherPiece:
                         tokensPos = tokens()
                         return False
-                    elif tokensPos[token] == firstPosition[piece_name] and piece_name != token and (not token in otherPiece):
+                    
+                    elif tokensPos[token] == startCell[color] and piece_name != token and (not token in otherPiece):
+                        print("salam")
                         if 'b' in token: temp = 'blue'
                         elif 'r' in token: temp = 'red'
                         elif 'g' in token: temp = 'green'
