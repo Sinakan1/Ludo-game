@@ -5,7 +5,7 @@ from boardAndPiece import  draw_board , draw_pieces,main_path
 from movment import move_piece
 from gameSetup import playersColor
 from player import player_pieces
-
+from winner import winning
 
 # Initialize Pygame
 pygame.init()
@@ -41,11 +41,14 @@ dice_value = 0
 turn = 0 
 
 def changeTurn():
+    # check if the player has won
     global turn
     colorTurn = playersColor[turn]
+
     turn = (turn + 1) % len(playersColor)
     return colorTurn
-
+    
+    
 colorTurn = changeTurn()
 
 
@@ -72,6 +75,7 @@ while running:
     dice_text = dice_font.render(f"Dice: {dice_value}", True, BLACK)
     screen.blit(dice_text, (WIDTH // 2 - dice_text.get_width() // 2, HEIGHT - 40))
     
+    
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -81,18 +85,23 @@ while running:
 
             if event.key == pygame.K_SPACE and moved:  # Roll the dice
                 dice_value = random.randint(1, 6)
+                dice_text = dice_font.render(f"Dice: {dice_value}", True, WHITE)
+                screen.blit(dice_text, (WIDTH // 2 - dice_text.get_width() // 2, HEIGHT - 40))
                 moved = False
 
             elif event.key == pygame.K_RETURN and not moved:
                 moved = move_piece(colorTurn, dice_value , selected_pieces)
                 if moved:
                     if dice_value != 6:
+                        dice_value = ""
+                        winning(colorTurn)
                         colorTurn = changeTurn()
                     
                     else:
                         pass
                 else :
-                    move_piece(colorTurn,dice_value,selected_pieces)
+                    pass
+
             elif event.key == pygame.K_BACKSPACE :
                 colorTurn = changeTurn()
                 moved = True

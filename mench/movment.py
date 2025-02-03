@@ -22,13 +22,12 @@ def move_piece(color, dice_roll,piece_name = "r1"):
             
             if move_statments(color,end_point,piece_name):
                 
-                countor = 0
                 for repeat in range(dice_roll):
                     piece =player_pieces[color][piece_name]["pos"]
                     if piece == endHouse[color][0] :
-                        rem_dice = dice_roll - countor
+                        rem_dice = dice_roll - repeat
                         if rem_dice > 0:
-                            move_piece_house(color,rem_dice,piece_name)
+                            move_piece_house(color,rem_dice,piece_name,repeat)
                             break
                         elif rem_dice <= 0 :
                             break
@@ -37,7 +36,7 @@ def move_piece(color, dice_roll,piece_name = "r1"):
                     new_index = (current_index + 1) % len(main_path)  # Calculate new position
 
                     player_pieces[color][piece_name]["pos"] = main_path[new_index]  # Update the piece position
-                    countor += 1
+
 
                     tokensPos = tokens()
                 return True
@@ -76,20 +75,30 @@ def move_piece(color, dice_roll,piece_name = "r1"):
                 return True
                 pass
                     # change turn
-
     
-def move_piece_house(color , dice_roll , piece_name):
+    
+def move_piece_house(color , dice_roll , piece_name, repeate = 0 ):
     tokensPos = tokens()
+    Cell = endHouse[color][0]
+    indexCell = main_path.index(Cell)
     piece = tokensPos[piece_name]
     index = endHouse[color].index(piece)
     new_index = index + dice_roll
     if new_index >= 6 :
         return False
     else:
-        print("somthing")
         end_point = endHouse[color][new_index] 
         if move_statments(color , end_point , piece_name):
             player_pieces[color][piece_name]["pos"] = end_point
+            if index >= 2 or new_index >= 2 : 
+
+                player_pieces[color][piece_name]["play"] = True
+                print(player_pieces)
+
+        elif (not move_statments(color , end_point , piece_name)) and piece == endHouse[color][0]:
+            
+            player_pieces[color][piece_name]["pos"] = main_path[indexCell - repeate]
+            return False
         else:
             return
 
@@ -114,5 +123,5 @@ def move_statments(color , piece , piece_name):
 
     else:
         return True
-            
-            
+
+
