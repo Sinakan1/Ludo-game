@@ -45,12 +45,12 @@ def displayWin(color):
             textColor = font.render(f"{color.upper()}", True, f"{color.upper()}")
             text2 = font.render(" has won the game", True, WHITE)
             textExit = font.render("Press any key to exit", True, WHITE)
-            textMenu = font.render("except M , M Is for Menu", True, WHITE)
+            textMenu = font.render("except M , M Is for Menu  ,But it didn't work Try later for menu", True, WHITE)
             screen.blit(text1,(WIDTH//2  - 100, HEIGHT//2) )
             screen.blit(textColor,(WIDTH//2 + 150 - 100, HEIGHT//2) )
             screen.blit(text2,(WIDTH//2 -100 , HEIGHT //2 + 30 ) )
             screen.blit(textExit,(WIDTH//2 - 120 , HEIGHT //2 + 150 ) )
-            screen.blit(textMenu,(WIDTH//2 - 120 , HEIGHT //2 + 200 ) )
+            screen.blit(textMenu,(20 , HEIGHT //2 + 200 ) )
             pygame.display.flip()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
