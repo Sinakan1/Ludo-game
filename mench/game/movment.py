@@ -94,7 +94,7 @@ def move_piece_house(color , dice_roll , piece_name, repeate = 0 ):
     else:
         end_point = endHouse[color][new_index] 
         if do_move(color , end_point , piece_name , False):
-            print("?")
+            
             player_pieces[color][piece_name]["pos"] = end_point
             if index >= 2 or new_index >= 2 : 
                 player_pieces[color][piece_name]["play"] = True

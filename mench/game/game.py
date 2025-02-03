@@ -94,7 +94,7 @@ def game ():
 
                 elif event.key == pygame.K_RETURN and not moved:
                     moved = move_piece(colorTurn, dice_value , selected_pieces)
-                    print(moved)
+                    
                     if moved:
                         if dice_value != 6:
                             dice_value = ""
@@ -129,6 +129,7 @@ def game ():
         if main:
             import menu
             menu.mainMenu()
+            return
 
     pygame.quit()
     sys.exit()

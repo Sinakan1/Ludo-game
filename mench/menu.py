@@ -1,6 +1,18 @@
+import pygame
+import sys
+import os
+
+folder_path = os.path.abspath("game")  # Adjust the path as needed
+
+# Add the folder to sys.path
+sys.path.append(folder_path)
+
+# Now you can import the module
 from game import game
 
-import pygame
+
+
+
 
 pygame.init()
 
