@@ -52,9 +52,11 @@ def game ():
         
     colorTurn = changeTurn()
 
-
     # index
     i = 0
+
+    main = False
+
     # Main game loop
     clock = pygame.time.Clock()
     running = True
@@ -96,7 +98,8 @@ def game ():
                     if moved:
                         if dice_value != 6:
                             dice_value = ""
-                            winning(colorTurn)
+                            if winning(colorTurn):
+                                main = True
                             colorTurn = changeTurn()
                         
                         else:
@@ -123,6 +126,9 @@ def game ():
 
         pygame.display.flip()
         clock.tick(30)
+        if main:
+            import menu
+            menu.mainMenu()
 
     pygame.quit()
     sys.exit()
