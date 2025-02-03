@@ -1,4 +1,5 @@
 turn = 0 
+
 def game ():
     import pygame
     import sys
@@ -15,7 +16,7 @@ def game ():
     # Screen dimensions
     WIDTH, HEIGHT = 900, 600
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption("Ludo Game")
+    pygame.display.set_caption("Mensch Game")
 
     # Colors
     WHITE = (255, 255, 255)
@@ -25,7 +26,7 @@ def game ():
     DARK_RED = (159, 96, 96)
     BLUE = (0, 0, 255)
     DARK_BLUE = (102, 102, 153)
-    GREEN = (0, 255, 0)
+    GREEN = (0, 153, 0)
     DARK_GREEN = (83, 172, 83)
     YELLOW = (236, 182, 19)
     DARK_YELLOW = (198, 163, 57)
@@ -36,7 +37,7 @@ def game ():
     ROWS, COLS = 15, 15
 
     # Dice setup
-    dice_font = pygame.font.Font(None, 36)
+    dice_font = pygame.font.Font("assets/Font/PixelifySans-Regular.ttf", 36)
     dice_value = 0
 
 
@@ -68,6 +69,7 @@ def game ():
         draw_board()
         draw_pieces()
         colorTokens = list(player_pieces[colorTurn].keys())
+        # select piece system
         selected_pieces = colorTokens[i]
         selected_pieces_pos = player_pieces[colorTurn][selected_pieces]["pos"]
         selected_pieces_played = player_pieces[colorTurn][selected_pieces]["play"]
@@ -76,9 +78,17 @@ def game ():
 
         # Dice display
         dice_text = dice_font.render(f"Dice: {dice_value}", True, BLACK)
-        screen.blit(dice_text, (WIDTH // 2 - dice_text.get_width() // 2, HEIGHT - 40))
+        dice_image = dice_font.render("Image", True, BLACK)
+        screen.blit(dice_text, (WIDTH *4 // 5  , HEIGHT *56/100))
+        screen.blit(dice_image , (WIDTH *4 // 5  , HEIGHT *56/100 + 100))
         
-        
+        # turn display
+        turn_text = dice_font.render("Turn: ", True, BLACK)
+        position_turn_text = (WIDTH * 75 // 100, HEIGHT * 20 // 100)
+        screen.blit(turn_text, position_turn_text)
+        color_text = dice_font.render(colorTurn, True, colorTurn.upper())
+        position_color_text = (WIDTH * 75 // 100 + turn_text.get_width() + 10, HEIGHT * 20 // 100)
+        screen.blit(color_text, position_color_text)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

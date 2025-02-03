@@ -38,7 +38,7 @@ RED = (255, 0, 0)
 DARK_RED = (159, 96, 96)
 BLUE = (0, 0, 255)
 DARK_BLUE = (102, 102, 153)
-GREEN = (0, 255, 0)
+GREEN = (0, 153, 0)
 DARK_GREEN = (83, 172, 83)
 YELLOW = (236, 182, 19)
 DARK_YELLOW = (198, 163, 57)
@@ -89,6 +89,23 @@ def draw_board():
             elif (col,row) == startCell["green"] : 
                 pygame.draw.rect(screen, DARK_GREEN , rect)
                 pygame.draw.rect(screen, BLACK, rect, 1)  # Keep grid lines inside path
+
+            # endCells
+            elif (col,row) in endHouse["red"][2:]:
+                pygame.draw.rect(screen, DARK_RED , rect)
+                pygame.draw.rect(screen, BLACK, rect, 1)  
+
+            elif (col,row) in endHouse["blue"][2:]:
+                pygame.draw.rect(screen, DARK_BLUE , rect)
+                pygame.draw.rect(screen, BLACK, rect, 1)  
+
+            elif (col,row) in endHouse["yellow"][2:]:
+                pygame.draw.rect(screen, DARK_YELLOW , rect)
+                pygame.draw.rect(screen, BLACK, rect, 1)  
+
+            elif (col,row) in endHouse["green"][2:]:
+                pygame.draw.rect(screen, DARK_GREEN , rect)
+                pygame.draw.rect(screen, BLACK, rect, 1)  
 
             # Draw the main path
             elif (row, col) in main_path :

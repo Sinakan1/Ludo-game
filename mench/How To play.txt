@@ -1,5 +1,7 @@
 How to play
 
+run menu.py for open the game
+
 1- for doing each turn you must press "Space" for roll dice 
 
 2 - after roll dice you must select a piece to move , you can switching with 
