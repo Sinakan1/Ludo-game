@@ -1,5 +1,4 @@
 from player import player_pieces
-from menu import menu
 import pygame 
 
 pygame.init()
@@ -42,7 +41,7 @@ def displayWin(color):
     while True : 
             screen.fill(BLACK)
             text1 = font.render("Player: ", True, WHITE)
-            textColor = font.render(f"{color.upper()}", True, f"{color.upper()}",WHITE)
+            textColor = font.render(f"{color.upper()}", True, f"{color.upper()}")
             text2 = font.render(" has won the game", True, WHITE)
             textExit = font.render("Press any key to exit", True, WHITE)
             textMenu = font.render("except M , M Is for Menu", True, WHITE)
