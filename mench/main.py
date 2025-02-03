@@ -99,12 +99,14 @@ while running:
                         colorTurn = changeTurn()
                     
                     else:
+                        dice_value = ""
                         pass
                 else :
                     pass
 
             elif event.key == pygame.K_BACKSPACE :
                 colorTurn = changeTurn()
+                dice_value = ""
                 moved = True
                     
             elif event.key == pygame.K_LEFT:
