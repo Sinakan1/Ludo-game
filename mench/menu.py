@@ -85,5 +85,22 @@ def gameSetupPage():
                 pygame.quit()
                 exit()
         game()
-        
+
+
+
+def howToPlay():
+    while True:
+        background = pygame.image.load("assets/How.png")
+        screen.blit(background, (0, 0))
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN:
+                mainMenu()
+                        
+
+
+
 mainMenu()
