@@ -1,12 +1,12 @@
 turn = 0 
 
-def game ():
+def mainGame():
     import pygame
     import sys
     import random
     from boardAndPiece import  draw_board , draw_pieces,main_path
     from movment import move_piece
-    from gameSetup import playersColor
+    from player import playersColor
     from player import player_pieces
     from winner import winning
 
@@ -136,10 +136,14 @@ def game ():
 
         pygame.display.flip()
         clock.tick(30)
-        if main:
-            import menu
-            menu.mainMenu()
-            return
+
+        if main == "again":
+            print("again")
+            pygame.quit
+            exit()
+        elif main == "done":
+            running = False
+            break
 
     pygame.quit()
     sys.exit()

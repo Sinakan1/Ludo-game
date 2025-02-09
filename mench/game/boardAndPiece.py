@@ -135,4 +135,3 @@ def draw_pieces():
             text_rect = text_surface.get_rect(center=pos)
             screen.blit(text_surface,text_rect)
             i += 1 
-draw_pieces()

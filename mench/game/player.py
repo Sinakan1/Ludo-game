@@ -1,5 +1,8 @@
-from gameSetup import playersColor
+from gameSetup import selection
 import copy
+
+
+playersColor = selection()
 
 # Player pieces
 pieces = {

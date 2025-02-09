@@ -1,3 +1,4 @@
+
 import pygame
 import sys
 import os
@@ -8,7 +9,7 @@ folder_path = os.path.abspath("game")  # Adjust the path as needed
 sys.path.append(folder_path)
 
 # Now you can import the module
-from game import game
+from game import mainGame
 
 
 
@@ -66,25 +67,12 @@ def mainMenu():
                     index = (index + 1) % 3
                 elif event.key == pygame.K_RETURN:
                     match index:
-                        case 0 : gameSetupPage() 
+                        case 0 : mainGame() 
                         case 1 : howToPlay()
                         case 2 : pygame.quit() ; exit()
         pygame.display.flip()
 
 
-def gameSetupPage():
-    font = pygame.font.Font("assets/Font/PixelifySans-Regular.ttf" ,30)
-    screen = pygame.display.set_mode((400, 200))
-    while True:
-        screen.fill(BLACK)
-        text = font.render("Setup game in terminal", True, WHITE)
-        screen.blit(text, (200 // 10  , 200//2))
-        pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-        game()
 
 
 
@@ -103,4 +91,7 @@ def howToPlay():
 
 
 
-mainMenu()
+mainMenu() 
+
+ 
+ 

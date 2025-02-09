@@ -34,9 +34,11 @@ def winning(color):
         if player_pieces[color][piece]["play"] == False:
             return False
     else:
-        if displayWin(color):
-            return True
-
+        if displayWin(color) == "again":
+            return "again"
+        
+        elif displayWin(color) == "done":
+            return "done"
 
 def displayWin(color):
     while True : 
@@ -56,9 +58,8 @@ def displayWin(color):
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-                if event.type == pygame.KEYDOWN and event:
+                if event.type == pygame.KEYDOWN :
                     if event.key == pygame.K_m:
-                        return True
-                    else:    
-                        pygame.quit()
-                        exit()
+                        return "again"
+                    else:
+                        return "done"
