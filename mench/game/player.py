@@ -12,9 +12,6 @@ pieces = {
     "yellow": {"y1":{"pos":(13, 13),"play":False},"y2":{"pos":(10, 10),"play":False},"y3":{"pos":(13, 10),"play":False},"y4":{"pos":(10, 13),"play":False}}
 }
 
-for p in pieces["red"]:
-    pieces["red"][p]["play"] = True
-
 
 player_pieces={}
 
