@@ -137,12 +137,8 @@ def mainGame():
         pygame.display.flip()
         clock.tick(30)
 
-        if main == "again":
-            print("again")
-            pygame.quit
-            exit()
-        elif main == "done":
-            running = False
+        
+        if main:
             break
 
     pygame.quit()
