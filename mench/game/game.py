@@ -99,8 +99,6 @@ def mainGame():
 
                 if event.key == pygame.K_SPACE and moved:  # Roll the dice
                     dice_value = random.randint(1, 6)
-                    dice_text = dice_font.render(f"Dice: {dice_value}", True, WHITE)
-                    screen.blit(dice_text, (WIDTH // 2 - dice_text.get_width() // 2, HEIGHT - 40))
                     moved = False
 
                 elif event.key == pygame.K_RETURN and not moved:
