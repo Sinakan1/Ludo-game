@@ -78,9 +78,10 @@ def mainGame():
 
         # Dice display
         dice_text = dice_font.render(f"Dice: {dice_value}", True, BLACK)
-        dice_image = dice_font.render("Image", True, BLACK)
+        dice_image = pygame.image.load(f"assets/Dice/{dice_value}.png")
+        dice_image = pygame.transform.scale(dice_image, (200, 200))
         screen.blit(dice_text, (WIDTH *4 // 5  , HEIGHT *56/100))
-        screen.blit(dice_image , (WIDTH *4 // 5  , HEIGHT *56/100 + 100))
+        screen.blit(dice_image, (WIDTH *3.75 // 5  , HEIGHT *48/100 + 100))
         
         # turn display
         turn_text = dice_font.render("Turn: ", True, BLACK)
@@ -107,20 +108,20 @@ def mainGame():
                     
                     if moved:
                         if dice_value != 6:
-                            dice_value = ""
+                            dice_value = 0
                             if winning(colorTurn):
                                 main = True
                             colorTurn = changeTurn()
                         
                         else:
-                            dice_value = ""
+                            dice_value = 0
                             pass
                     else :
                         pass
 
                 elif event.key == pygame.K_BACKSPACE :
                     colorTurn = changeTurn()
-                    dice_value = ""
+                    dice_value = 0
                     moved = True
                         
                 elif event.key == pygame.K_LEFT:
